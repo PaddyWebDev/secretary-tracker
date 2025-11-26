@@ -109,7 +109,7 @@ model CyberWarrior {
   @@index([groupId])
 }
 
-// ==================== Impact Activity ====================
+//Impact Activity 
 model ImpactActivity {
   id      String @id @default(cuid())
   groupId String
@@ -127,6 +127,8 @@ model ImpactActivity {
   socialMediaLinks  String?
   mediaLinks        String?
   remarks           String?
+  feedback          String?    // URL to uploaded feedback PDF
+  photos            String[]   // array of string bcoz it can have multiple photos urls
 
   createdAt DateTime @default(now())
 
@@ -145,7 +147,7 @@ enum Class {
   SrCollege
 }
 
-// ==================== Presentation Details ====================
+// Presentation Details
 model Presentation {
   id      String @id @default(cuid())
   groupId String
@@ -154,14 +156,16 @@ model Presentation {
   mentorFaculty String?
   classType     String
   schoolName    String
-  taluka        String?
-  city          String?
-  district      String?
-  principalName String?
-  schoolContact String?
+  taluka        String
+  city          String
+  district      String
+  principalName String
+  schoolContact String
   medium        String?
-  date          DateTime?
+  date          DateTime
   studentsClass Students[]
+  feedback      String?    // URL to uploaded feedback PDF
+  photos        String[]   // array of string bcoz it can have multiple photos urls
 
   createdAt DateTime @default(now())
 
@@ -176,4 +180,22 @@ model Students {
   createdAt      DateTime      @default(now())
   presentation   Presentation? @relation(fields: [presentationId], references: [id])
   presentationId String?
+}
+
+// Mass Activity 
+model Mass_Activity {
+  id                String    @id @default(cuid())
+
+  activityName        String
+  activityDescription String
+  date                DateTime
+  duration            String     
+  location            String
+  participantsCount   Int
+  stakeholders        String     
+  socialMediaLinks    String?
+  mediaLinks          String?
+  photos              String[]
+
+  createdAt           DateTime  @default(now())
 }
