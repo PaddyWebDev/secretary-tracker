@@ -193,8 +193,8 @@ model Mass_Activity {
   location            String
   participantsCount   Int
   stakeholders        String     
-  socialMediaLinks    String?
-  mediaLinks          String?
+  socialMediaLinks    String[]
+  mediaLinks          String[]
   photos              String[]
 
   createdAt           DateTime  @default(now())
