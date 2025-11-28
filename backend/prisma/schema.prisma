@@ -186,7 +186,6 @@ model Students {
   presentationId String?
 }
 
-// Mass Activity 
 model Mass_Activity {
   id                String    @id @default(cuid())
 
